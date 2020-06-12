@@ -122,7 +122,7 @@ describe("Gilded Rose", function() {
       })
 
       describe("Conjured", function() {
-        const conjuredItem = new Item("conjured item", 2, 10);
+        const conjuredItem = new Item("Conjured item", 2, 10);
         const gildedRose = new Shop([conjuredItem]);
     
         const items = gildedRose.updateQuality();
