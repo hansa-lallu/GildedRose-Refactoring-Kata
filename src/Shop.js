@@ -10,17 +10,18 @@ class Shop {
 
  updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.isSulfurasItem(this.items[i])) {
+      if (this.isSulfurasItem(this.items[i].name)) {
         return this.items;
       }
-      
+
+      if (this.isConjuredItem(this.items[i].name)) {
+        this.items[i].quality = this.items[i].quality - 2;
+        return this.items
+      }
+
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
-            if (this.items[i].name.includes("Conjured")) {
-              this.items[i].quality = this.items[i].quality - 2;
-            } else {
-              this.items[i].quality = this.items[i].quality - 1;
-            }
+          this.items[i].quality = this.items[i].quality - 1;
         }
       } else {
         if (this.items[i].quality < 50) {
@@ -61,8 +62,12 @@ class Shop {
     return this.items;
   }
 
-  isSulfurasItem(item) {
-    return item.name === SULFURAS_ID;
+  isSulfurasItem(itemName) {
+    return itemName === SULFURAS_ID;
+  }
+
+  isConjuredItem(itemName) {
+    return itemName.includes(CONJURED_ID);
   }
 }
 
