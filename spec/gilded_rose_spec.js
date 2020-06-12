@@ -1,6 +1,7 @@
 'use strict';
 
-import { Shop, Item } from '../src/gilded_rose'
+import { Shop } from '../src/shop'
+import { Item } from '../src/item'
 
 describe("Gilded Rose", function() {
 
