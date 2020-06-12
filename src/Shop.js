@@ -10,16 +10,16 @@ class Shop {
 
  updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.isSulfurasItem(this.items[i].name)) {
+      if (this._isSulfurasItem(this.items[i].name)) {
         return this.items;
       }
 
-      if (this.isConjuredItem(this.items[i].name)) {
+      if (this._isConjuredItem(this.items[i].name)) {
         this.items[i].quality -= 2;
         return this.items
       }
       
-      if (this.isAgedBrieItem(this.items[i].name)) {
+      if (this._isAgedBrieItem(this.items[i].name)) {
         if (this.items[i].quality < 50) {
           this.items[i].quality += 1;
         }
@@ -27,7 +27,9 @@ class Shop {
         return this.items
       }
 
-      if (this.isNormalItem(this.items[i].name)) {        
+      
+
+      if (this._isNormalItem(this.items[i].name)) {        
       }
 
       if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -65,23 +67,23 @@ class Shop {
     return this.items;
   }
 
-  isNormalItem(itemName) {
-    return !this.isSulfurasItem(itemName) && !this.isConjuredItem(itemName) && !this.isAgedBrieItem(itemName) && !this.isBackstagePassItem(itemName)
+  _isNormalItem(itemName) {
+    return !this._isSulfurasItem(itemName) && !this._isConjuredItem(itemName) && !this._isAgedBrieItem(itemName) && !this._isBackstagePassItem(itemName)
   }
 
-  isSulfurasItem(itemName) {
+  _isSulfurasItem(itemName) {
     return itemName.includes(SULFURAS_ID);
   }
 
-  isConjuredItem(itemName) {
+  _isConjuredItem(itemName) {
     return itemName.includes(CONJURED_ID);
   }
 
-  isAgedBrieItem(itemName) {
+  _isAgedBrieItem(itemName) {
     return itemName.includes(AGED_BRIE_ID);
   }
 
-  isBackstagePassItem(itemName) {
+  _isBackstagePassItem(itemName) {
     return itemName.includes(BACKSTAGE_PASS_ID)
   }
 }
