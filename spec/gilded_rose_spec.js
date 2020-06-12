@@ -78,5 +78,28 @@ describe("Gilded Rose", function() {
         })
       })
     })
+
+    describe("Backstage passes", function() {
+      const backstagePassesGreaterThan10 = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 15);
+      const backstagePassesEqualTo10 = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 15);
+      const backstagePassesLessThan10 = new Item("Backstage passes to a TAFKAL80ETC concert", 9, 15);
+      const gildedRose = new Shop([backstagePassesGreaterThan10, backstagePassesEqualTo10, backstagePassesLessThan10]);
+
+      const items = gildedRose.updateQuality();
+
+      describe("quality", function() {
+        it('increases in value by one when sellIn value is greater than 10', function() {
+           expect(items[0].quality).toBe(16)
+        })
+
+        it('increases in value by two when sellIn value is equal to 10', function() {
+          expect(items[1].quality).toBe(17)
+        })
+
+        it('increases in value by two when sellIn value is equal to 10', function() {
+          expect(items[2].quality).toBe(17)
+        })
+      })
+    })
   })
 });
