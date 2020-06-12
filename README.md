@@ -29,4 +29,6 @@ Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) 
 ## Process
 - Set up 
 - fixed failing test 
+- wrote passing tests for current code 
+- 
 
