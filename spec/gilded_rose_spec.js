@@ -85,7 +85,9 @@ describe("Gilded Rose", function() {
       const backstagePassesLessThan10 = new Item("Backstage passes to a TAFKAL80ETC concert", 9, 15);
       const backstagePassesEqualTo5 = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 15);
       const backstagePassesLessThan5 = new Item("Backstage passes to a TAFKAL80ETC concert", 4, 15);
-      const gildedRose = new Shop([backstagePassesGreaterThan10, backstagePassesEqualTo10, backstagePassesLessThan10, backstagePassesEqualTo5, backstagePassesLessThan5]);
+      const backstagePassesEqualTo0 = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 15);
+      const backstagePassesLessThan0 = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 15);
+      const gildedRose = new Shop([backstagePassesGreaterThan10, backstagePassesEqualTo10, backstagePassesLessThan10, backstagePassesEqualTo5, backstagePassesLessThan5, backstagePassesEqualTo0, backstagePassesLessThan0]);
 
       const items = gildedRose.updateQuality();
 
@@ -110,7 +112,13 @@ describe("Gilded Rose", function() {
           expect(items[4].quality).toBe(18)
         })
 
-        
+        it('decreases to a value of 0 after sellIn value is equal to 0', function() {
+          expect(items[5].quality).toBe(0)
+        })
+
+        it('decreases to a value of 0 after sellIn value is less than 0', function() {
+          expect(items[6].quality).toBe(0)
+        })
       })
     })
   })
