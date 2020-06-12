@@ -120,6 +120,17 @@ describe("Gilded Rose", function() {
           expect(items[6].quality).toBe(0)
         })
       })
+
+      describe("Conjured", function() {
+        const conjuredItem = new Item("conjured item", 2, 10);
+        const gildedRose = new Shop([conjuredItem]);
+    
+        const items = gildedRose.updateQuality();
+
+        it('reduces quality value by 2', function() {
+          expect(items[0].quality).toBe(8) 
+        })
+      })
     })
   })
 });
