@@ -40,5 +40,18 @@ describe("Gilded Rose", function() {
         })
       })
     })
+
+    describe("Aged Brie", function() {
+      const agedBrieItem = new Item("Aged Brie", 4, 10);
+      const gildedRose = new Shop([agedBrieItem]);
+
+      const items = gildedRose.updateQuality();
+
+      describe("quality", function() {
+        it('increases in value by one when it gets older', function() {
+           expect(items[0].quality).toBe(11)
+        })
+      })      
+    })
   })
 });
