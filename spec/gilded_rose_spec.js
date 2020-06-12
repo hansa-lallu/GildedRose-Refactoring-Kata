@@ -14,24 +14,24 @@ describe("Gilded Rose", function() {
     describe("Normal", function() {
       const normalItem = new Item("normal item", 2, 10);
       const normalItemExpiring = new Item("normal item expiring", 0, 10);
-      const normalItemNegative = new Item("quality negatives", 0, 0);
+      const normalItemNegative = new Item("normal item negatives", 0, 0);
    
       const gildedRose = new Shop([normalItem, normalItemExpiring, normalItemNegative]);
   
       const items = gildedRose.updateQuality();
       
       describe("sellIn", function() {
-        it('reduces sellIn value by one', function() {
+        it('reduces sellIn value by 1', function() {
           expect(items[0].sellIn).toBe(1)
         })
       })
       
       describe("quality", function() {
-        it('reduces quality value by one', function() {
+        it('reduces quality value by 1', function() {
            expect(items[0].quality).toBe(9) 
         })
   
-        it('reduces quality value by two when sellIn date passed', function() {
+        it('reduces quality value by 2 when sellIn date passed', function() {
           expect(items[1].quality).toBe(8)
         })
       
@@ -43,13 +43,19 @@ describe("Gilded Rose", function() {
 
     describe("Aged Brie", function() {
       const agedBrieItem = new Item("Aged Brie", 4, 10);
-      const gildedRose = new Shop([agedBrieItem]);
+      const agedBrieItemMax = new Item("Aged Brie", 10, 50);
+
+      const gildedRose = new Shop([agedBrieItem, agedBrieItemMax]);
 
       const items = gildedRose.updateQuality();
 
       describe("quality", function() {
         it('increases in value by one when it gets older', function() {
            expect(items[0].quality).toBe(11)
+        })
+
+        it('cannot increase quality value when at 50', function() {
+          expect(items[1].quality).toBe(50)
         })
       })      
     })
