@@ -59,5 +59,24 @@ describe("Gilded Rose", function() {
         })
       })      
     })
+
+    describe("Sulfuras", function() {
+      const sulfurasItem = new Item("Sulfuras, Hand of Ragnaros", 10, 100);
+      const gildedRose = new Shop([sulfurasItem]);
+      
+      const items = gildedRose.updateQuality();
+
+      describe("sellIn", function() {
+        it('never needs to be sold', function() {
+          expect(items[0].sellIn).toBe(10)
+        })
+      })
+
+      describe("quality", function() {
+        it('never decreases in quality', function() {
+           expect(items[0].quality).toBe(100)
+        })
+      })
+    })
   })
 });
