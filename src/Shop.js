@@ -10,59 +10,45 @@ class Shop {
 
  updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this._isSulfurasItem(this.items[i].name)) {
+      const currentItem = this.items[i]
+      
+      if (this._isConjuredItem(currentItem.name)) {
+        currentItem.quality -= 2;
+      }
+      
+      if (this._isAgedBrieItem(currentItem.name)) {
+        if (currentItem.quality < 50) {
+          currentItem.quality += 1;
+        }
+      }
+      
+      if (this._isBackstagePassItem(currentItem.name)) {
+        if (currentItem.sellIn > 10) {
+          currentItem.quality += 1;
+        } else if (currentItem.sellIn <= 10 && currentItem.sellIn > 5) {
+          currentItem.quality += 2
+        } else if (currentItem.sellIn <= 5 && currentItem.sellIn > 0) {
+          currentItem.quality += 3
+        } else if (currentItem.sellIn <= 0) {
+          currentItem.quality -= currentItem.quality;
+        }        
+      }
+      
+      if (this._isNormalItem(currentItem.name)) {
+        if (currentItem.quality > 0) {
+          if (currentItem.sellIn > 0) {
+            currentItem.quality -= 1
+          } else {
+            currentItem.quality -= 2
+          }
+        }
+      }
+
+      if (this._isSulfurasItem(currentItem.name)) {
         return this.items;
       }
 
-      if (this._isConjuredItem(this.items[i].name)) {
-        this.items[i].quality -= 2;
-        return this.items
-      }
-      
-      if (this._isAgedBrieItem(this.items[i].name)) {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality += 1;
-        }
-
-        return this.items
-      }
-
-      
-
-      if (this._isNormalItem(this.items[i].name)) {        
-      }
-
-      if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          this.items[i].quality -= 1;
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality += 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality += 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality += 1;
-              }
-            }
-          }
-        }
-      }
-        this.items[i].sellIn -= 1;
-      if (this.items[i].sellIn < 0) {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-                this.items[i].quality -= 1;
-            }
-          } else {
-            this.items[i].quality -= this.items[i].quality;
-          }
-        }    
+      currentItem.sellIn -= 1;
     }
     return this.items;
   }

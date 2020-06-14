@@ -1,12 +1,19 @@
-// import { Item } from "../src/gilded_rose"
+import { Item } from "../src/Item"
 
-// describe("Item", function () {
-//   describe("#tomorrowsQuality", function () {
-//     describe("given the item is not brie, sulfuras, backstage pass or conjured, the item is within sell-by-date", function () {
-//       it("should by one less than current quality", function () {
-//         var testItem = new Item('apple', 3, 3);
-//         expect(testItem.qualityTomorrow()).toEqual(2);
-//       });
-//     });
-//   });
-// });
+describe("Item", function () {
+  describe("initialize", function() {
+    const item = new Item('test', 3, 4);
+
+    it('sets the name correctly', function() {
+      expect(item.name).toEqual('test')
+    })
+
+    it('sets the sellIn correctly', function() {
+      expect(item.sellIn).toEqual(3)
+    })
+
+    it('sets the quality correctly', function() {
+      expect(item.quality).toEqual(4)
+    })
+  })
+});
